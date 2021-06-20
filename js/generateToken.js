@@ -6,23 +6,39 @@
       document.querySelector("#result").innerHTML = $clave;
       token = $clave
       $("#btnGuardarToken").removeClass('disabled')
+      $("#datetime").removeClass('disabled')
   });
 
+
   document.querySelector("#btnGuardarToken").addEventListener("click",function(){
-      guardarToken() 
-      $("#selectLab").addClass('disabled')
+      
+      if($("#datetime").val() ===''){
+        $("#errorFecha").removeClass('d-none')
+      }else{
+        $("#selectLab").addClass('disabled')
       $("#result").addClass('disabled')
-      $("#btnGuardarToken").addClass('disabled')
+        $("#errorFecha").addClass('d-none')
+        $("#datetime").addClass('disabled')
+        guardarToken()
+        $("#btnGuardarToken").addClass('disabled') 
+      }
+      
+  });
+
+  document.getElementById("datetime").addEventListener("click", function(){
+    $("#errorFecha").addClass('d-none')
   });
 
 // Reestablece funcionalidad
   document.querySelector("#btnNuevoToken").addEventListener("click",function(){
     $("#selectLab").removeClass('disabled')
     $("#result").removeClass('disabled')
+    $("#datetime").addClass('disabled')
     $("#btnGuardarToken").removeClass("d-none")
     $("#tokenSucces").addClass("d-none")
     document.getElementById('selectLab').value = 'select'
     document.querySelector("#result").innerHTML = '';
+    document.querySelector("#datetime").value = '';
   });
   
   /*Función principal | Generador de tokens */
@@ -48,3 +64,13 @@
   {
       return Math.floor( Math.random() * ( max - min ) ) + min;
   }
+
+
+  // datetimepicker
+
+  $("#datetime").datetimepicker({
+    format: "yyyy-mm-dd  HH:mm",
+    autoclose: true,
+    showMeridian: true,
+    pickerPosition: "bottom-left"
+});

@@ -8,11 +8,13 @@
     <!-- styles -->
     <link rel="stylesheet"  href="css/style.css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"  crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-datetimepicker.min.css" />
     
     <!-- js -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+   
     
     <!-- firebase -->
     <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
@@ -25,7 +27,7 @@
     
     <!-- Generador de tokens -->
     <section class="container-fluid col-12 col-sm-5 generador">
-        
+
         <h2>Crear Token</h2>
         <select class="form-control" id="selectLab">
           <option value="select">Seleccione el laboratorio</option> 
@@ -36,19 +38,27 @@
           <option value="0007laboratoriogeotecnia4">Laboratorio Geotecnia 4</option> 
           <option value="0008laboratorioquimica1">Laboratorio de transferencia de calor</option>   
         </select>
+
         <div id="result" contenteditable="false" spellcheck="false"></div>
+        
+        <h6>Fecha de vencimiento</h6>
+        <input size="16" type="text" class="disabled" id="datetime" readonly>
+        <div id="errorFecha" class="alert alert-danger d-none mt-2" role="alert">
+          Ingrese la fecha de vencimiento
+        </div>    
+
         <div class="text-right">
           <a href="javascript:void(0);" id="btnGuardarToken"  class="btn btn-primary disabled">Guardar Token</a>
         </div>
 
-        <div id="tokenSucces" class="alert alert-success alert-dismissible d-none text-center" role="alert">
+        <div id="tokenSucces" class="alert alert-success d-none text-center mt-3" role="alert">
           <h4 class="alert-heading">Token creado exitosamente!</h4>
           <a href="javascript:void(0);" id="btnNuevoToken"  class="btn btn-primary">Nuevo Token</a>      
         </div>
     </section>
 
     <!-- Creación de usuarios -->
-    <div class="container-fluid w-75" id="statusContainer">
+    <!-- <div class="container-fluid w-75" id="statusContainer">
       <div class="alert alert-primary" role="alert">
         <h4 class="alert-heading" id="alertHeading"></h4>
         <hr />
@@ -85,9 +95,9 @@
       <button id="logout" class="btn btn-primary">
         Logout
       </button>
-    </div>
+    </div> -->
 
-    <div class="container-fluid w-75 mt-5">
+    <!-- <div class="container-fluid w-75 mt-5">
       <h4 class="mb-3">Create a New User</h4>
 
       <form class="w-75">
@@ -192,9 +202,10 @@
       >
         <p class="mb-0" id="alertStatusUserContent"></p>
       </div>
-    </div>
+    </div> -->
 
     <!-- JS -->
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
     <script src="js/moment.min.js"></script>
     <script src="js/config.js"></script>
     <script src="js/generateToken.js"></script>

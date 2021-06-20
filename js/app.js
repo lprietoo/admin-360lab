@@ -11,18 +11,19 @@ var token;
 
 // Asigna los tokens al laboratorio selecionado
 
-// Detecta cambios del select 
+// Detecta cambios del select laboratorios 
 selectedLab.addEventListener("change", function(){
   lab = document.getElementById('selectLab').value;
-  console.log(lab)
 });
 
 
 // Guardar tokens en las colecciones "laboratorios" y "tokens"
 function guardarToken() {
-  var creacion = moment().unix()
-  var expiracion = moment().add(1, "h").unix()
 
+  var fechaCreacion = moment().format('YYYY-MM-DD hh:mm') // guarda fecha de creación
+  var creacion = moment(fechaCreacion).unix() // convierte fecha a formato unix
+  var fechaExp = $('#datetime').val() // guarda fecha de expiración
+  var exp = moment(fechaExp, 'YYYY-MM-DD hh:mm').unix() // convierte fecha a formato unix
 // Asigna los tokens al laboratorio selecionado
 
   // db.collection("laboratorios").doc(lab).set({ tokens:token})
@@ -40,7 +41,7 @@ function guardarToken() {
   db.collection("tokens").doc(token).set({
 
       fechaCreacion: creacion,
-      fechaExp: expiracion,
+      fechaExp: exp,
 
     }).then(function() {
       $("#btnGuardarToken").addClass("d-none")
@@ -53,6 +54,3 @@ function guardarToken() {
 
 //-----------------------------------
 
-// console.log(expiracion)
-// var fecha = Date(1624029555)
-// console.log(fecha)
