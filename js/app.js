@@ -1,7 +1,8 @@
 
 //---------------------Variable------------------//
 var token;
-
+var userSign = firebase.auth().currentUser;
+var loc = location.pathname;
 
 //-----------------Firestore---------------------//
 
@@ -78,9 +79,8 @@ function logOut(){
 
 // Verifica el estado de autenticación del usuario
 // Si esta logueado ingresa de lo contrario solo mostrara el login
-var user = firebase.auth().currentUser;
-var loc = location.pathname;
-if (user == null) {
+
+if (userSign == null) {
   if(loc ==='/admin-360lab'){
     location.href="/admin-360lab/login.html"
    }
