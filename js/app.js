@@ -53,11 +53,12 @@ function signIn(){
 
   .then((userCredential) => {
     // Signed in
-    location.href="/admin-360lab/"
+    var user = userCredential.user;
+    location.href="/admin-360lab"
   })
   .catch((error) => {
-    // var errorCode = error.code;
-    // var errorMessage = error.message;
+    var errorCode = error.code;
+    var errorMessage = error.message;
     $("#loginError").removeClass("d-none")
   });
 }
