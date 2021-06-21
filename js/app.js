@@ -1,6 +1,14 @@
 
 //---------------------Variable------------------//
 var token;
+firebase.auth().onAuthStateChanged(function(user) {
+  if (!user) {
+    var loc = location.pathname;
+    if(loc ==='/admin-360lab'){
+      location.href="/admin-360lab/login.html"
+      }
+  }
+});
 
 
 //-----------------Firestore---------------------//
@@ -78,11 +86,3 @@ function logOut(){
 
 // Verifica el estado de autenticación del usuario
 // Si esta logueado ingresa de lo contrario solo mostrara el login
-firebase.auth().onAuthStateChanged(function(user) {
-  if (!user) {
-    var loc = location.pathname;
-    if(loc ==='/admin-360lab'){
-      location.href="/admin-360lab/login.html"
-      }
-  }
-});
