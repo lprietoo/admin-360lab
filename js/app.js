@@ -2,17 +2,6 @@
 //---------------------Variable------------------//
 var token;
 
-firebase.auth().onAuthStateChanged(function(user) {
-  if (!user) {
-    var loc =  location.href;
-    if(loc ==='/admin-360lab'){
-      location.href="/admin-360lab/login.html"
-    }
-
-    console.log('usuario sin aut')
-  }
-});
-
 
 //-----------------Firestore---------------------//
 
@@ -59,7 +48,6 @@ function guardarToken() {
 function signIn(){
   var email = $('#usuarioLogin').val()
   var password = $('#contraseñaLogin').val()
-  console.log(location.href)
   firebase.auth().signInWithEmailAndPassword(email, password)
 
   .then((userCredential) => {
@@ -89,3 +77,14 @@ function logOut(){
 
 // Verifica el estado de autenticación del usuario
 // Si esta logueado ingresa de lo contrario solo mostrara el login
+function observador() {
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (!user) {
+      var loc =  location.href;
+      if(loc ==='/admin-360lab'){
+        location.href="/admin-360lab/login.html"
+      }
+    }
+  });
+}
+
