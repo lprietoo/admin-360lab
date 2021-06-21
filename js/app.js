@@ -4,6 +4,13 @@ var token;
 var userSign = firebase.auth().currentUser;
 var loc = location.pathname;
 
+if (userSign == null) {
+  if(loc ==='/admin-360lab/'){
+    location.href="/admin-360lab/login.html"
+   }
+}
+
+
 //-----------------Firestore---------------------//
 
 // Guardar tokens en las colecciones "laboratorios" y "tokens"
@@ -80,9 +87,4 @@ function logOut(){
 // Verifica el estado de autenticación del usuario
 // Si esta logueado ingresa de lo contrario solo mostrara el login
 
-if (userSign == null) {
-  if(loc ==='/admin-360lab'){
-    location.href="/admin-360lab/login.html"
-   }
-}
 
