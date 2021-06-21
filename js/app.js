@@ -2,7 +2,6 @@
 //---------------------Variable------------------//
 var token;
 
-
 //-----------------Firestore---------------------//
 
 // Guardar tokens en las colecciones "laboratorios" y "tokens"
@@ -81,7 +80,7 @@ function observador() {
   firebase.auth().onAuthStateChanged(function(user) {
     if (!user) {
       var loc =  location.href;
-      if(loc ==='/admin-360lab'){
+      if(loc ==='/admin-360lab/'){
         location.href="/admin-360lab/login.html"
       }
     }
