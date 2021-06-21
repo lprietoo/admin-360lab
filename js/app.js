@@ -70,7 +70,7 @@ function logOut(){
   .then( () => {
     location.href="/admin-360lab/login.html"
   }).catch((error) => {
-    var errorCode = error.code;
+    // var errorCode = error.code;
     var errorMessage = error.message;
     console.log(errorMessage)
   });
@@ -85,7 +85,7 @@ firebase.auth().onAuthStateChanged((user) => {
     console.log('ingresando...')
   } else {
     var loc = location.pathname;    
-    if(loc ==='/admin-360lab' ){
+    if(loc ==='/admin-360lab'){
       location.href="/admin-360lab/login.html"
      }
   }
