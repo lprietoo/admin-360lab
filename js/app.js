@@ -84,7 +84,8 @@ firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     console.log('ingresando...')
   } else {
-    var loc = location.pathname;    
+    var loc = location.pathname;
+    console.log(loc)    
     if(loc ==='/admin-360lab/'){
       location.href="/admin-360lab/login.html"
      }
