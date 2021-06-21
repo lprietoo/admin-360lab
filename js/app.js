@@ -1,17 +1,18 @@
 
 //---------------------Variable------------------//
 var user = firebase.auth().currentUser;
+var pathUser = '/admin-360lab';
 var token;
 
 
 
 //----------------Autenticacion-------------------//
 // Verifica el estado de autenticación del usuario
-
+// Si esta logueado ingresa de lo contrario solo mostrara el login
 if (user == null) {
   var loc = location.pathname;
-  if(loc ==='/admin-360lab/'){
-    location.href="/admin-360lab/login.html"
+  if(loc === pathUser +'/'){
+    location.href= pathUser +"/login.html"
    }
 }
 
@@ -26,7 +27,7 @@ function signIn(){
   .then((userCredential) => {
     // Signed in
     var user = userCredential.user;
-    location.href="/admin-360lab"
+    location.href= pathUser
   })
   .catch((error) => {
     // var errorCode = error.code;
@@ -42,7 +43,7 @@ function signIn(){
 function logOut(){
   firebase.auth().signOut()
   .then( () => {
-    location.href="/admin-360lab/login.html"
+    location.href= pathUser +"/login.html"
   }).catch((error) => {
     // var errorCode = error.code;
     var errorMessage = error.message;
