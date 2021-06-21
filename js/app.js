@@ -1,12 +1,15 @@
 
 //---------------------Variable------------------//
 var token;
+console.log(location.pathname)
 firebase.auth().onAuthStateChanged(function(user) {
   if (!user) {
     var loc = location.pathname;
     if(loc ==='/admin-360lab'){
       location.href="/admin-360lab/login.html"
-      }
+    }
+
+    console.log('usuario sin aut')
   }
 });
 
