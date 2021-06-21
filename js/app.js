@@ -1,10 +1,10 @@
 
 //---------------------Variable------------------//
 var token;
-console.log(location.pathname)
+console.log( location.href)
 firebase.auth().onAuthStateChanged(function(user) {
   if (!user) {
-    var loc = location.pathname;
+    var loc =  location.href;
     if(loc ==='/admin-360lab'){
       location.href="/admin-360lab/login.html"
     }
