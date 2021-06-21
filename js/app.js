@@ -3,55 +3,6 @@
 var token;
 
 
-
-//----------------Autenticacion-------------------//
-
-// Inicio de sesión
-
-function signIn(){
-  var email = $('#usuarioLogin').val()
-  var password = $('#contraseñaLogin').val()
-
-  firebase.auth().signInWithEmailAndPassword(email, password)
-
-  .then((userCredential) => {
-    // Signed in
-    var user = userCredential.user;
-    location.href="/admin-360lab"
-  })
-  .catch((error) => {
-    // var errorCode = error.code;
-    // var errorMessage = error.message;
-    $("#loginError").removeClass("d-none")
-  });
-}
-
-// Cierre de sesión
-
-function logOut(){
-  firebase.auth().signOut()
-  .then( () => {
-    location.href="/admin-360lab/login.html"
-  }).catch((error) => {
-    // var errorCode = error.code;
-    var errorMessage = error.message;
-    console.log(errorMessage)
-  });
-}
-
-// Verifica el estado de autenticación del usuario
-// Si esta logueado ingresa de lo contrario solo mostrara el login
-var user = firebase.auth().currentUser;
-if (user === null) {
-  var loc = location.pathname;
-  if(loc ==='/admin-360lab/'){
-    location.href="/admin-360lab/login.html"
-   }
-}
-
-
-
-
 //-----------------Firestore---------------------//
 
 // Guardar tokens en las colecciones "laboratorios" y "tokens"
@@ -87,5 +38,50 @@ function guardarToken() {
     .catch((error) => {
       console.error("Error ", error);
     });
+}
+
+
+//----------------Autenticacion-------------------//
+
+// Inicio de sesión
+
+function signIn(){
+  var email = $('#usuarioLogin').val()
+  var password = $('#contraseñaLogin').val()
+
+  firebase.auth().signInWithEmailAndPassword(email, password)
+
+  .then((userCredential) => {
+    // Signed in
+    location.href="/admin-360lab/"
+  })
+  .catch((error) => {
+    // var errorCode = error.code;
+    // var errorMessage = error.message;
+    $("#loginError").removeClass("d-none")
+  });
+}
+
+// Cierre de sesión
+
+function logOut(){
+  firebase.auth().signOut()
+  .then( () => {
+    location.href="/admin-360lab/login.html"
+  }).catch((error) => {
+    // var errorCode = error.code;
+    var errorMessage = error.message;
+    console.log(errorMessage)
+  });
+}
+
+// Verifica el estado de autenticación del usuario
+// Si esta logueado ingresa de lo contrario solo mostrara el login
+var userLogin = firebase.auth().currentUser;
+if (userLogin == null) {
+  var loc = location.pathname;
+  if(loc ==='/admin-360lab/'){
+    location.href="/admin-360lab/login.html"
+   }
 }
 
