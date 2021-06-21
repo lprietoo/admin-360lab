@@ -1,7 +1,7 @@
 
 //---------------------Variable------------------//
 var token;
-console.log( location.href)
+
 firebase.auth().onAuthStateChanged(function(user) {
   if (!user) {
     var loc =  location.href;
@@ -59,7 +59,7 @@ function guardarToken() {
 function signIn(){
   var email = $('#usuarioLogin').val()
   var password = $('#contraseñaLogin').val()
-
+  console.log(location.href)
   firebase.auth().signInWithEmailAndPassword(email, password)
 
   .then((userCredential) => {
