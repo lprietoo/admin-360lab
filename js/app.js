@@ -6,14 +6,6 @@ var token;
 
 
 //----------------Autenticacion-------------------//
-// Verifica el estado de autenticación del usuario
-// Si esta logueado ingresa de lo contrario solo mostrara el login
-if (user == null) {
-  var loc = location.pathname;
-  if(loc ==='/admin-360lab/'){
-    location.href="/admin-360lab/login.html"
-   }
-}
 
 // Inicio de sesión
 
@@ -49,6 +41,16 @@ function logOut(){
     console.log(errorMessage)
   });
 }
+
+// Verifica el estado de autenticación del usuario
+// Si esta logueado ingresa de lo contrario solo mostrara el login
+if (user === null) {
+  var loc = location.pathname;
+  if(loc ==='/admin-360lab/'){
+    location.href="/admin-360lab/login.html"
+   }
+}
+
 
 
 
