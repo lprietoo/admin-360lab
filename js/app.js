@@ -54,11 +54,11 @@ function signIn(){
   .then((userCredential) => {
     // Signed in
     var user = userCredential.user;
-    location.href="../index.html"
+    location.href="../"
   })
   .catch((error) => {
-    var errorCode = error.code;
-    var errorMessage = error.message;
+    // var errorCode = error.code;
+    // var errorMessage = error.message;
     $("#loginError").removeClass("d-none")
   });
 }
@@ -75,3 +75,18 @@ function logOut(){
     console.log(errorMessage)
   });
 }
+
+
+
+// Verifica el estado de autenticación del usuario
+
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    console.log('ingresando...')
+  } else {
+    var loc = location.pathname;    
+    if(loc ==='/' ){
+      location.href="../login.html"
+     }
+  }
+});
