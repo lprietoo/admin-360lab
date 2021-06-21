@@ -54,7 +54,7 @@ function signIn(){
   .then((userCredential) => {
     // Signed in
     var user = userCredential.user;
-    location.href="../"
+    location.pathname="../"
   })
   .catch((error) => {
     // var errorCode = error.code;
@@ -68,7 +68,7 @@ function signIn(){
 function logOut(){
   firebase.auth().signOut()
   .then( () => {
-    location.href="../login.html"
+    location.pathname="../login.html"
   }).catch((error) => {
     var errorCode = error.code;
     var errorMessage = error.message;
