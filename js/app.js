@@ -54,7 +54,7 @@ function signIn(){
   .then((userCredential) => {
     // Signed in
     var user = userCredential.user;
-    location.pathname="/admin-360lab/"
+    location.pathname="/"
   })
   .catch((error) => {
     // var errorCode = error.code;
@@ -68,7 +68,7 @@ function signIn(){
 function logOut(){
   firebase.auth().signOut()
   .then( () => {
-    location.pathname="/admin-360lab/login.html"
+    location.pathname="/login.html"
   }).catch((error) => {
     var errorCode = error.code;
     var errorMessage = error.message;
@@ -86,7 +86,7 @@ firebase.auth().onAuthStateChanged((user) => {
   } else {
     var loc = location.pathname;    
     if(loc ==='admin-360lab/' ){
-      location.href="/admin-360lab/login.html"
+      location.href="/login.html"
      }
   }
 });
