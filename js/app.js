@@ -1,21 +1,8 @@
 
 //---------------------Variable------------------//
-var selectedLab = document.getElementById("selectLab");
-var lab;
 var token;
 
-
-
-
-//-----------------------------------------
-
-// Asigna los tokens al laboratorio selecionado
-
-// Detecta cambios del select laboratorios 
-selectedLab.addEventListener("change", function(){
-  lab = document.getElementById('selectLab').value;
-});
-
+//-----------------Firestore---------------------//
 
 // Guardar tokens en las colecciones "laboratorios" y "tokens"
 function guardarToken() {
@@ -52,5 +39,39 @@ function guardarToken() {
     });
 }
 
-//-----------------------------------
 
+
+//----------------Autenticacion-------------------//
+
+// Inicio de sesión
+
+function signIn(){
+  var email = $('#usuarioLogin').val()
+  var password = $('#contraseñaLogin').val()
+
+  firebase.auth().signInWithEmailAndPassword(email, password)
+
+  .then((userCredential) => {
+    // Signed in
+    var user = userCredential.user;
+    location.href="../index.html"
+  })
+  .catch((error) => {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    $("#loginError").removeClass("d-none")
+  });
+}
+
+// Cierre de sesión
+
+function logOut(){
+  firebase.auth().signOut()
+  .then( () => {
+    location.href="../login.html"
+  }).catch((error) => {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    console.log(errorMessage)
+  });
+}

@@ -1,10 +1,19 @@
+//---------------variables--------------------//
+var selectedLab = document.getElementById("selectLab");
+var lab;
+
 // imprime token al seleccionar un laboratorio
 
-  document.getElementById("selectLab").addEventListener("change", function(){
+  selectedLab.addEventListener("change", function(){
+    // Detecta cambios del select laboratorios 
+      lab = document.getElementById('selectLab').value;
+
+    //token
       $longitud = 7; //numero de caracteres
       $clave = generarClave($longitud); 
       document.querySelector("#result").innerHTML = $clave;
       token = $clave
+      
       $("#btnGuardarToken").removeClass('disabled')
       $("#datetime").removeClass('disabled')
   });
