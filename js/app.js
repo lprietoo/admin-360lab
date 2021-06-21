@@ -44,15 +44,14 @@ function guardarToken() {
 //----------------Autenticacion-------------------//
 // Verifica el estado de autenticación del usuario
 
-// firebase.auth().onAuthStateChanged((user) => {
-//   if (user) {
-//     console.log('ingresando...')
-//   } else {
-//     var loc = location.pathname;
-//     console.log(loc)    
-    
-//   }
-// });
+var user = firebase.auth().currentUser;
+
+if (user == null) {
+  var loc = location.pathname;
+  if(loc ==='/admin-360lab/'){
+    location.href="/admin-360lab/login.html"
+   }
+}
 
 // Inicio de sesión
 
@@ -74,14 +73,7 @@ function signIn(){
   });
 }
 
-var user = firebase.auth().currentUser;
 
-if (user == null) {
-  var loc = location.pathname;
-  if(loc ==='/admin-360lab/'){
-    location.href="/admin-360lab/login.html"
-   }
-}
 
 // Cierre de sesión
 
