@@ -81,7 +81,7 @@ function logOut(){
 var userLogin = firebase.auth().currentUser;
 if (userLogin == null) {
   var loc = location.pathname;
-  if(loc ==='/admin-360lab/'){
+  if(loc ==='/admin-360lab'){
     location.href="/admin-360lab/login.html"
    }
 }
