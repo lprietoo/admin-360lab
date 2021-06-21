@@ -78,9 +78,9 @@ function logOut(){
 
 // Verifica el estado de autenticación del usuario
 // Si esta logueado ingresa de lo contrario solo mostrara el login
-var userLogin = firebase.auth().currentUser;
-if (userLogin == null) {
-  var loc = location.pathname;
+var user = firebase.auth().currentUser;
+var loc = location.pathname;
+if (user == null) {
   if(loc ==='/admin-360lab'){
     location.href="/admin-360lab/login.html"
    }
