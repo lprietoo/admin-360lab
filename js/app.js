@@ -55,9 +55,8 @@ function observador() {
 function guardarToken() {
 
   var fechaCreacion = moment().format('YYYY-MM-DD hh:mm') // guarda fecha de creación
-  var creacion = moment(fechaCreacion).unix() // convierte fecha a formato unix
   var fechaExp = $('#datetime').val() // guarda fecha de expiración
-  var exp = moment(fechaExp, 'YYYY-MM-DD hh:mm').unix() // convierte fecha a formato unix
+  var exp = moment(fechaExp, 'YYYY-MM-DD hh:mm')
 // Asigna los tokens al laboratorio selecionado
 
   // db.collection("laboratorios").doc(lab).set({ tokens:token})
@@ -74,7 +73,7 @@ function guardarToken() {
 
   db.collection("tokens").doc(token).set({
 
-      fechaCreacion: creacion,
+      fechaCreacion: fechaCreacion,
       fechaExp: exp,
 
     }).then(function() {
