@@ -62,21 +62,22 @@ function guardarToken() {
 
   // db.collection("laboratorios").doc(lab).set({ tokens:token})
 
-  db.collection("laboratorios")
-    .doc(lab)
-    .update({
+  // db.collection("laboratorios")
+  //   .doc(lab)
+  //   .update({
 
-      tokens:firebase.firestore.FieldValue.arrayUnion(token)
-  })
-  .catch((error) => {
-    console.error("Error ", error);
-  });
+  //     tokens:firebase.firestore.FieldValue.arrayUnion(token)
+  // })
+  // .catch((error) => {
+  //   console.error("Error ", error);
+  // });
 
   db.collection("tokens").doc(token).set({
 
       fechaCreacion: fechaCreacion,
       fechaExp: fechaExp,
-
+      laboratorio: lab,
+      
     }).then(function() {
       $("#btnGuardarToken").addClass("d-none")
       $("#tokenSucces").removeClass("d-none")
