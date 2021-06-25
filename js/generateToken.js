@@ -78,7 +78,7 @@ var lab;
   // datetimepicker
 
   $("#datetime").datetimepicker({
-    format: "yyyy-mm-dd  HH:mm",
+    format: "yyyy/mm/dd hh:mm",
     autoclose: true,
     showMeridian: true,
     pickerPosition: "bottom-left"

@@ -56,8 +56,9 @@ function guardarToken() {
 
   var fechaCreacion = moment().format('YYYY-MM-DD hh:mm') // guarda fecha de creación
   var fechaExp = $('#datetime').val() // guarda fecha de expiración
-  var exp = moment(fechaExp, 'YYYY-MM-DD hh:mm')
-// Asigna los tokens al laboratorio selecionado
+  
+  
+  // Asigna los tokens al laboratorio selecionado
 
   // db.collection("laboratorios").doc(lab).set({ tokens:token})
 
@@ -74,7 +75,7 @@ function guardarToken() {
   db.collection("tokens").doc(token).set({
 
       fechaCreacion: fechaCreacion,
-      fechaExp: exp,
+      fechaExp: fechaExp,
 
     }).then(function() {
       $("#btnGuardarToken").addClass("d-none")
