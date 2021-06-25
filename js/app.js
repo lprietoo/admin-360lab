@@ -54,7 +54,7 @@ function observador() {
 // Guardar tokens en las colecciones "laboratorios" y "tokens"
 function guardarToken() {
 
-  var fechaCreacion = moment().format('YYYY-MM-DD hh:mm') // guarda fecha de creación
+  var fechaCreacion = moment().format('YYYY/MM/DD hh:mm') // guarda fecha de creación
   var fechaExp = $('#datetime').val() // guarda fecha de expiración
   
   
