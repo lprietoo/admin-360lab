@@ -9,7 +9,7 @@ var lab;
       lab = document.getElementById('selectLab').value;
 
     //token
-      $longitud = 7; //numero de caracteres
+      $longitud = 15; //numero de caracteres
       $clave = generarClave($longitud); 
       document.querySelector("#result").innerHTML = $clave;
       token = $clave

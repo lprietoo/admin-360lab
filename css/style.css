@@ -10,7 +10,6 @@
     font-family:sans-serif;
     display:flex;
     align-items:center;
-    justify-content:center;
     flex-direction: column;
     min-height:100vh;
     background:#e5ecf2;
@@ -22,6 +21,12 @@
 
   select{
     cursor: pointer;
+  }
+
+  .nav-tabs .nav-link.active {
+    color: #fff !important;
+    background-color: #007bff !important;
+    border-color: #dee2e6 #dee2e6 #fff;
   }
 
 /**********Generador de tokens***********/

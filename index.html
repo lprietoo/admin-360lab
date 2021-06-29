@@ -24,183 +24,161 @@
   </head>
 
   <body onload="observador()">
-    
-    <!-- Generador de tokens -->
-    <section class="container-fluid col-12 col-sm-5 generador">
-
-        <h2>Crear Token</h2>
-        <select class="form-control" id="selectLab">
-          <option value="select">Seleccione el laboratorio</option> 
-          <option value="0003laboratoriofundicion">Laboratorio de fundición y pulvimetalurgia</option> 
-          <option value="0004laboratoriogeotecnia1">Laboratorio Geotecnia 1</option> 
-          <option value="0005laboratoriogeotecnia2">Laboratorio Geotecnia 2</option> 
-          <option value="0006laboratoriogeotecnia3">Laboratorio Geotecnia 3</option> 
-          <option value="0007laboratoriogeotecnia4">Laboratorio Geotecnia 4</option> 
-          <option value="0008laboratorioquimica1">Laboratorio de transferencia de calor</option>   
-        </select>
-
-        <h6 class="mt-3">Token:</h6>
-        <div id="result" contenteditable="false" spellcheck="false"></div>
-        
-        <h6>Fecha de vencimiento:</h6>
-        <input size="16" type="text" class="disabled" id="datetime" readonly>
-        <div id="errorFecha" class="alert alert-danger d-none mt-2" role="alert">
-          Para continuar ingrese la fecha de vencimiento
-        </div>    
-
-        <div class="text-right">
-          <a href="javascript:void(0);" id="btnGuardarToken"  class="btn btn-primary disabled">Guardar Token</a>
-        </div>
-
-        <div id="tokenSucces" class="alert alert-success d-none text-center mt-3" role="alert">
-          <h4 class="alert-heading">Token creado exitosamente!</h4>
-          <a href="javascript:void(0);" id="btnNuevoToken"  class="btn btn-primary">Nuevo Token</a>      
-        </div>
-    </section>
-    <div class="mt-5">
+    <!-- Menú header -->
+    <nav class="container-fluid col-12 navbar navbar-dark bg-primary">
+      <span class="navbar-brand mb-0 h1">Admin-360lab</span>
       <button onclick="logOut()"  class="btn btn-primary">Cerrar sesión</button>
-    </div>
+    </nav>
 
-    <!-- Creación de usuarios -->
-    <!-- 
-    <div class="container-fluid w-75 mt-3" id="loginContainer">
-      <div class="form-group">
-        <label for="adminEmail">Email</label>
-        <input
-          type="email"
-          class="form-control"
-          id="loginEmail"
-          placeholder="Your Email"
-        />
+    <!-- Menú section -->
+    <ul class="nav nav-tabs mt-3 w-75" id="tabs" role="tablist">
+      <li class="nav-item w-50 text-center h3">
+        <a class="nav-link active" id="generatorToken" data-toggle="tab" href="#tokens" aria-selected="true">Gestion de tokens</a>
+      </li>
+      <li class="nav-item w-50 text-center h3">
+        <a class="nav-link" id="generatorUser" data-toggle="tab" href="#users" aria-selected="true">Gestion de usuarios y laboratorios</a>
+      </li>
+    </ul>
+
+    <!-- Generador de tokens -->
+    <div class="tab-content w-100 " id="sectionTabs">
+      <div class="tab-pane fade show active" id="tokens" role="tabpanel" aria-labelledby="generatorToken">
+        <section class="container-fluid col-12 col-sm-5 generador my-4">
+
+            <h2>Crear Token</h2>
+            <select class="form-control" id="selectLab">
+              <option value="select">Seleccione el laboratorio</option> 
+              <option value="0003laboratoriofundicion">Laboratorio de fundición y pulvimetalurgia</option> 
+              <option value="0004laboratoriogeotecnia1">Laboratorio Geotecnia 1</option> 
+              <option value="0005laboratoriogeotecnia2">Laboratorio Geotecnia 2</option> 
+              <option value="0006laboratoriogeotecnia3">Laboratorio Geotecnia 3</option> 
+              <option value="0007laboratoriogeotecnia4">Laboratorio Geotecnia 4</option> 
+              <option value="0008laboratorioquimica1">Laboratorio de transferencia de calor</option>   
+            </select>
+
+            <h6 class="mt-3">Token:</h6>
+            <div id="result" contenteditable="false" spellcheck="false"></div>
+            
+            <h6>Fecha de vencimiento:</h6>
+            <input size="16" type="text" class="disabled" id="datetime" readonly>
+            <div id="errorFecha" class="alert alert-danger d-none mt-2" role="alert">
+              Para continuar ingrese la fecha de vencimiento
+            </div>    
+
+            <div class="text-right">
+              <a href="javascript:void(0);" id="btnGuardarToken"  class="btn btn-primary disabled">Guardar Token</a>
+            </div>
+
+            <div id="tokenSucces" class="alert alert-success d-none text-center mt-3" role="alert">
+              <h4 class="alert-heading">Token creado exitosamente!</h4>
+              <a href="javascript:void(0);" id="btnNuevoToken"  class="btn btn-primary">Nuevo Token</a>      
+            </div>
+        </section>
+
+        <div class="container-fluid col-10 table-responsive-md overflow-auto">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Token</th>
+                <th>Fecha de creación</th>
+                <th>Fecha de vencimiento</th>
+                <th>Laboratorio</th>
+                <th>Eliminar</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+          </table>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="adminPassword">Password</label>
-        <input
-          type="password"
-          class="form-control"
-          id="loginPassword"
-          placeholder="Password"
-        />
-      </div>
 
-      <button id="login" class="btn btn-primary">
-        Login
-      </button>
-    </div>
+      <!-- Creación de usuarios -->
+      <!-- <div class="tab-pane fade" id="users" role="tabpanel" aria-labelledby="generatorUser">
+        <div class="container-fluid w-75 mt-5">
+          <h2 class="mb-3">Crear usuario</h2>
 
-    <div class="container-fluid w-75 mt-3 mb-3 d-none" id="logoutContainer">
-      <button id="logout" class="btn btn-primary">
-        Logout
-      </button>
-    </div> -->
-
-    <!-- <div class="container-fluid w-75 mt-5">
-      <h4 class="mb-3">Create a New User</h4>
-
-      <form class="w-75">
-        <div class="form-group row">
-          <label for="firstName" class="col-sm-3 col-form-label"
-            >First Name</label
-          >
-          <div class="col-sm-9">
-            <input
-              type="text"
-              class="form-control"
-              id="firstName"
-              autocomplete="off"
-              placeholder="First Name"
-            />
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="lastName" class="col-sm-3 col-form-label"
-            >Last Name</label
-          >
-          <div class="col-sm-9">
-            <input
-              type="text"
-              class="form-control"
-              id="lastName"
-              autocomplete="off"
-              placeholder="Last Name"
-            />
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="email" class="col-sm-3 col-form-label">Email</label>
-          <div class="col-sm-9">
-            <input
-              type="email"
-              class="form-control"
-              id="email"
-              autocomplete="off"
-              placeholder="Email"
-            />
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="password" class="col-sm-3 col-form-label">Password</label>
-          <div class="col-sm-9">
-            <input
-              type="password"
-              class="form-control"
-              id="password"
-              autocomplete="off"
-              placeholder="Password"
-            />
-          </div>
-        </div>
-        <fieldset class="form-group">
-          <div class="row">
-            <legend class="col-form-label col-sm-3 pt-0">Role</legend>
-            <div class="col-sm-9">
-              <div class="form-check form-check-inline">
+          <form class="w-75">
+            <div class="form-group row">
+              <label for="email" class="col-sm-3 col-form-label">Email</label>
+              <div class="col-sm-9">
                 <input
-                  class="form-check-input"
-                  type="radio"
-                  name="roleOptions"
-                  id="inlineRadio1"
-                  value="author"
+                  type="email"
+                  class="form-control"
+                  id="usuarioEmail"
+                  autocomplete="off"
+                  placeholder="Email"
                 />
-                <label class="form-check-label" for="inlineRadio1"
-                  >Author</label
-                >
-              </div>
-              <div class="form-check form-check-inline">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="roleOptions"
-                  id="inlineRadio2"
-                  value="editor"
-                />
-                <label class="form-check-label" for="inlineRadio2"
-                  >Editor</label
-                >
               </div>
             </div>
-          </div>
-        </fieldset>
-        <div class="form-group row">
-          <div class="col-sm-12">
-            <button type="button" id="createUser" class="btn btn-primary">
-              Create User
-            </button>
-          </div>
+            <div class="form-group row">
+              <label for="password" class="col-sm-3 col-form-label">Contraseña</label>
+              <div class="col-sm-9">
+                <input
+                  type="password"
+                  class="form-control"
+                  id="usuarioContraseña"
+                  autocomplete="off"
+                  placeholder="Password"
+                />
+              </div>
+            </div>
+            <fieldset class="form-group">
+              <div class="row">
+                <legend class="col-form-label col-sm-3 pt-0">Rol</legend>
+                <div class="col-sm-9">
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="roleOptions"
+                      id="inlineRadio1"
+                      value="Administrador"
+                    />
+                    <label class="form-check-label" for="inlineRadio1"
+                      >Administrador</label
+                    >
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="roleOptions"
+                      id="inlineRadio2"
+                      value="usuario"
+                    />
+                    <label class="form-check-label" for="inlineRadio2"
+                      >Usuario</label
+                    >
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <button type="button" onclick="crarUsuario()" class="btn btn-primary">
+                  Crear usuario
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
-      </form>
-    </div>
 
-    <div class="container-fluid w-75 d-none" id="statusUserCreation">
-      <div
-        id="alertStatusUserCreation"
-        class="alert alert-success"
-        role="alert"
-      >
-        <p class="mb-0" id="alertStatusUserContent"></p>
+      <div class="container-fluid col-10 table-responsive-md overflow-auto">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Email</th>
+              <th>Contraseña</th>
+              <th>Rol</th>
+              <th>Ver / Editar Laboratorios</th>
+              <th>Editar Usuario</th>
+              <th>Eliminar Usuario</th>
+            </tr>
+          </thead>
+          <tbody id="tableUser"></tbody>
+        </table>
       </div>
-    </div> -->
-
+      </div> -->
+    </div>
     <!-- JS -->
     <script src="js/bootstrap-datetimepicker.min.js"></script>
     <script src="js/moment.min.js"></script>
