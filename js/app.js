@@ -5,35 +5,35 @@ const userAuth = firebase.auth().currentUser;
 
 //----------------Autenticacion-------------------//
 
-function crearUsuario(){
-  var email = $('#usuarioEmail').val()
-  var password = $('#usuarioContraseña').val()
-  var rol = $('.form-check-input').val()
-  console.log(rol)
-  firebase.auth().createUserWithEmailAndPassword(email, password)
+// function crearUsuario(){
+//   var email = $('#usuarioEmail').val()
+//   var password = $('#usuarioContraseña').val()
+//   var rol = $('.form-check-input').val()
+//   console.log(rol)
+//   firebase.auth().createUserWithEmailAndPassword(email, password)
 
-  .then((userCredential) => {
-    var user = userCredential.user;
+//   .then((userCredential) => {
+//     var user = userCredential.user;
         
-    db.collection("usuarios").doc(user.uid).set({
+//     db.collection("usuarios").doc(user.uid).set({
 
-       email: user.email,
-       rol: rol,
-       laboratorio: lab,
+//        email: user.email,
+//        rol: rol,
+//        laboratorio: lab,
       
-    }).catch((error) => {
-      console.error("no se pudo guardar el usuario en la bd", error);
-    });
+//     }).catch((error) => {
+//       console.error("no se pudo guardar el usuario en la bd", error);
+//     });
 
-    alert("Usuario creado")
+//     alert("Usuario creado")
 
-  })
-  .catch((error) => {
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    alert("Error en la creación de usuario")
-  });
-}
+//   })
+//   .catch((error) => {
+//     var errorCode = error.code;
+//     var errorMessage = error.message;
+//     alert("Error en la creación de usuario")
+//   });
+// }
 
 // Muestra los usuarios en la tabla
 // db.collection("usuarios").onSnapshot((querySnapshot)=> {
@@ -54,20 +54,6 @@ function crearUsuario(){
   
 // });
 
-// Elimina el token seleccionado en la tabla
-
-// function eliminarUser(id){
-//   userAuth.delete().then(() => {
-//     db.collection("tokens").doc(id).delete().then(function() {
-//       alert(`Usuario eliminado`)
-//     }).catch(function(error){
-//       alert(`No se pudo eliminar el usuario`)
-//     });
-//   })
- 
-// }
-
-
 
 // Inicio de sesión admin
 
@@ -79,7 +65,7 @@ function signIn(){
   .then((userCredential) => {
     // Signed in
     var user = userCredential.user;
-    location.href="/admin-360lab"
+    location.href="../"
   })
   .catch((error) => {
     var errorCode = error.code;
@@ -93,7 +79,7 @@ function signIn(){
 function logOut(){
   firebase.auth().signOut()
   .then( () => {
-    location.href="/admin-360lab/login.html"
+    location.href="../login.html"
   }).catch((error) => {
     // var errorCode = error.code;
     var errorMessage = error.message;
@@ -106,29 +92,10 @@ function logOut(){
 function observador() {
   firebase.auth().onAuthStateChanged(function(user) {
     if (!user) {
-        location.href="/admin-360lab/login.html"
+        location.href="../login.html"
       }
   });
 }
-
-
-// obtener información de usuario
-
-// const user = firebase.auth().currentUser;
-// if (user !== null){
-//   console.log()
-//   tableUser.innerHTML+=`
-//     <tr>
-//       <td>${user.email}</td>
-//       <td>${user.password}</td>
-//       <td><button class="btn btn-danger" onclick="eliminarUser('${user.uid}')">Eliminar</button></td>
-//       <td><button class="btn btn-danger" onclick="eliminarUser('${user.uid}')">Eliminar</button></td>
-//       <td><button class="btn btn-danger" onclick="eliminarUser('${user.uid}')">Eliminar</button></td>
-//     </tr>`;
-
-//     console.log(user.email)
-// }
-
 
 
 //-----------------Firestore---------------------//
@@ -159,12 +126,36 @@ function guardarToken() {
 db.collection("tokens").onSnapshot((querySnapshot)=> {
   tableBody.innerHTML='';
   querySnapshot.forEach((doc) => {
+    var nameLab;
+    switch (doc.data().laboratorio) {
+      case "0003laboratoriofundicion":
+        nameLab = "Laboratorio de fundición y pulvimetalurgia";
+        break;
+      case "0004laboratoriogeotecnia1":
+        nameLab = "Laboratorio Geotecnia 1"
+        break;
+      case "0005laboratoriogeotecnia2":
+        nameLab = "Laboratorio Geotecnia 2"
+        break;
+      case "0006laboratoriogeotecnia3":
+        nameLab = "Laboratorio Geotecnia 3"
+        break;
+      case "0007laboratoriogeotecnia4":
+        nameLab = "Laboratorio Geotecnia 4"
+        break;
+      case "0008laboratorioquimica1":
+        nameLab = "Laboratorio de transferencia de calor"
+        break;
+      default:
+        break;
+    }
+
     tableBody.innerHTML+=`
     <tr>
       <td>${doc.id}</td>
       <td>${doc.data().fechaCreacion}</td>
       <td>${doc.data().fechaExp}</td>
-      <td>${doc.data().laboratorio}</td>
+      <td>${nameLab}</td>
       <td><button class="btn btn-danger" onclick="eliminarToken('${doc.id}')">Eliminar</button></td>
     </tr>`;
   });

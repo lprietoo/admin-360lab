@@ -1,0 +1,24 @@
+{
+  "name": "admin-360lab",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lprietoo/admin-360lab.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lprietoo/admin-360lab/issues"
+  },
+  "homepage": "https://github.com/lprietoo/admin-360lab#readme",
+  "dependencies": {
+    "firebase-admin": "^9.10.0"
+  }
+}

@@ -9,7 +9,7 @@ var lab;
       lab = document.getElementById('selectLab').value;
 
     //token
-      $longitud = 15; //numero de caracteres
+      $longitud = 7; //numero de caracteres
       $clave = generarClave($longitud); 
       document.querySelector("#result").innerHTML = $clave;
       token = $clave
@@ -50,15 +50,15 @@ var lab;
     document.querySelector("#datetime").value = '';
   });
   
-  /*Función principal | Generador de tokens */
+  //Función principal | Generador de tokens //
   function generarClave(long)
   {
-      /*caracteres permitidos*/
+      //caracteres permitidos
       var caracteres = "Aa0BbCc1DdEe2FfGgHh3IiJj4KkLl5MmNn6OoPp7QqRr8SsTt9UuVv*WwXxYyZz$",
           clave = '',
           numero;
   
-      /*creacion de token*/
+      //creacion de token
       for(var i=0;i<long;i++)
       {
           numero = getNumero( 0, caracteres.length );
@@ -68,7 +68,7 @@ var lab;
   }
   
   
-  /*Función para generar un numero aleatorio*/
+  //Función para generar un numero aleatorio
   function getNumero(min,max)
   {
       return Math.floor( Math.random() * ( max - min ) ) + min;
