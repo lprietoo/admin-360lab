@@ -126,7 +126,10 @@ function guardarToken() {
 db.collection("tokens").onSnapshot((querySnapshot)=> {
   tableBody.innerHTML='';
   querySnapshot.forEach((doc) => {
+
     var nameLab;
+
+    // configura el nombre del laboratorio
     switch (doc.data().laboratorio) {
       case "0003laboratoriofundicion":
         nameLab = "Laboratorio de fundición y pulvimetalurgia";

@@ -12,7 +12,16 @@ var lab;
       $longitud = 7; //numero de caracteres
       $clave = generarClave($longitud); 
       document.querySelector("#result").innerHTML = $clave;
-      token = $clave
+      token = $clave;
+
+      //Verifica si el token existe en la base de datos, si existe cambia el token.
+      db.collection("tokens").doc(token).get().then((doc) => {
+        if(doc.exists){
+          $clave = generarClave($longitud); 
+          document.querySelector("#result").innerHTML = $clave;
+          token = $clave;
+        }
+      });
       
       $("#btnGuardarToken").removeClass('disabled')
       $("#datetime").removeClass('disabled')
