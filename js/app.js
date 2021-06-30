@@ -65,7 +65,7 @@ function signIn(){
   .then((userCredential) => {
     // Signed in
     var user = userCredential.user;
-    location.href="../"
+    location.href="/admin-360lab/"
   })
   .catch((error) => {
     var errorCode = error.code;
@@ -79,7 +79,7 @@ function signIn(){
 function logOut(){
   firebase.auth().signOut()
   .then( () => {
-    location.href="../login.html"
+    location.href="/admin-360lab/login.html"
   }).catch((error) => {
     // var errorCode = error.code;
     var errorMessage = error.message;
@@ -92,7 +92,7 @@ function logOut(){
 function observador() {
   firebase.auth().onAuthStateChanged(function(user) {
     if (!user) {
-        location.href="../login.html"
+        location.href="/admin-360lab/login.html"
       }
   });
 }
